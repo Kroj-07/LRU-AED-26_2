@@ -1,0 +1,4 @@
+{"step":0,"op":"put","key":1,"value":10,"hit":false,"evicted":false,"evicted_key":-1,"list_order":[1]}
+{"step":1,"op":"put","key":2,"value":20,"hit":false,"evicted":false,"evicted_key":-1,"list_order":[2,1]}
+{"step":2,"op":"get","key":1,"value":10,"hit":true,"evicted":false,"evicted_key":-1,"list_order":[1,2]}
+{"step":3,"op":"put","key":3,"value":30,"hit":false,"evicted":false,"evicted_key":-1,"list_order":[3,1,2]}
