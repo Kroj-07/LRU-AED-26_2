@@ -6,7 +6,7 @@ partir de una implementación real en C++.
 ## Integrantes
 
 - [Nombre Persona A]
-- [Nombre Persona B]
+- Azul Arbulú Silva - 202510303
 - Abigail Jaslin Cabanillas Ventocilla - 202510438
 
 ## Requisitos
@@ -31,4 +31,4 @@ partir de una implementación real en C++.
 ## Video y repositorio
 
 - Video: [enlace al video / YouTube no listado]
-- Repositorio: [enlace a este repositorio]
+- Repositorio: [[enlace a este repositorio](https://github.com/Kroj-07/LRU-AED-26_2.git)]
