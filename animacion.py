@@ -75,7 +75,7 @@ class LRUAnimacion(Scene):
         titulo = Text("LRU Cache", font_size=48, color=BLUE)
         subtitulo = Text("Least Recently Used Cache", font_size=28, color=GREY)
         integrantes = Text(
-            "Integrantes: [Nombre A], [Nombre B], Abigail Jaslin Cabanillas Ventocilla",
+            "Integrantes: Kiara Luz Rojas Meza, Azul Arbulú Silva,Abigail Jaslin Cabanillas Ventocilla",
             font_size=20, color=GREY,
         )
         grupo_titulo = VGroup(titulo, subtitulo, integrantes).arrange(DOWN, buff=0.3)
@@ -216,6 +216,6 @@ class LRUAnimacion(Scene):
         self.play(FadeOut(elementos_evento), run_time=0.3)
 
     def cierre(self):
-        texto = Text("Fin de la simulación", font_size=36, color=BLUE)
+        texto = Text("Gracias", font_size=36, color=BLUE)
         self.play(Write(texto))
         self.wait(2)
