@@ -6,7 +6,11 @@ class LRUAnimacion(Scene):
     # Configuración de tiempos (en segundos)
     velocidad = 1.0           # factor de escala: >1 más rápido, <1 más lento
     tiempo_por_evento = 1.0   # pausa base después de cada evento
-
+    traces_a_mostrar = [
+        ("trace_normal.jsonl", "Caso normal"),
+        ("trace_eviction.jsonl", "Caso borde: eviction"),
+        ("trace_capacidad_uno.jsonl", "Caso borde: capacidad 1"),
+    ]
     def construct(self):
         self.titulo_intro()
  
