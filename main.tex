@@ -1,0 +1,128 @@
+\documentclass[a4paper, table]{article}
+\usepackage[margin=2cm]{geometry} % editar margen de la página
+\usepackage[spanish]{babel} % Inglés -> Español.
+\usepackage{fancyhdr} % cabecera
+
+\usepackage{graphicx} % \includegraphics{pic.jpg}
+\usepackage{float} % Controla la posición de figuras y tablas.
+\usepackage{tabularx} % Editar las tablas-ish
+\usepackage{booktabs} %  Permite usar líneas horizontales: \toprule, \midrule, \bottomrule
+\usepackage{makecell} % \thead{}: saltos de línea en tabla
+
+\usepackage{hyperref} % Para adjuntar enlaces
+\usepackage{tcolorbox} % Para colorbox
+\tcbuselibrary{breakable}
+\usepackage{enumitem} % enumerar, letras, numeros y demás...
+
+\usepackage{tagging} % para usar \tag{}
+\usepackage{caption} % captions n shi
+
+\usepackage{cancel} % para usar \cancel{}
+\usepackage{amsmath} % LaTeX equations, multline* & demás...
+\usepackage{amssymb} % simbología matemática, \therefore, ...
+
+% Escala de tamaños: \tiny; \small, \normalsize, \large, \Large, \LARGE, \huge, \Huge.
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Ecuaciones Diferenciales 2026-1}
+\rhead{Resolución de Casos 2}
+\cfoot{\thepage}
+
+\setlength{\parindent}{0pt}
+% \usepackage[backend=biber, style=apa]{biblatex}
+% \addbibresource{referencias.bib}
+
+\begin{document}
+
+\begin{titlepage}
+    \thispagestyle{plain} % para numerar la página 1
+
+    \begin{flushleft}
+        \includegraphics[width=0.3\textwidth]{img/logo.png}
+    \end{flushleft}
+    
+    \begin{center}
+        {\LARGE \textbf{Proyecto I: LRU Caché}} \\[1em]
+        {\large Algoritmos y Estructuras de Datos | 2026-2} \\[0.5em]
+        {\large \today}
+    \end{center}
+
+    \begin{table}[H]
+        \centering
+        
+        \large{Grupo 3 - Teoría 3} \\ [1em]
+        
+        % cc: 2 columnas, ambas centradas. 
+        % Por cada columna una letra: {c, l, r}.
+        
+        \begin{tabular}{|c|c|p{5.5cm}|} 
+            \hline \textbf{Nombre completo} & \textbf{Código del estudiante} & \textbf{Contribución} \\
+            \hline Azul Arbulú Silva & 202510303 & Lógica, animación y caso de caché llena o vacía de \textit{eviction}, generación del \texttt{trace.json} y análisis de complejidad. \\ 
+            \hline Kiara Luz Rojas Meza & 202510620 & Creación de la clase \texttt{LRUCache}, implementación y animación de los métodos \texttt{get()/put()}, descripción y \textit{TDA}. \\ 
+            \hline Abigail Jaslin Cabanillas Ventocilla & 202510438 & Casos de prueba y \textit{script}. Animación de la introducción, \textit{TDA}, utilidad y complejidad. \\ \hline
+        \end{tabular}
+        
+        \vspace{1em}
+        {\large Docente: Victor Racso Galvan Oyola.}
+    
+    \end{table}
+    
+\end{titlepage}
+
+\setcounter{page}{2} % cuenta la página uno, la próxima página se cuenta como la segunda página
+
+\newpage
+
+\section{Descripción de la estructura y \textit{TDA}}
+
+El \textit{LRU Cache} utiliza una estructura híbrida que combina una \textit{Tabla Hash} y una Lista Doblemente Enlazada. Por un lado, la \textit{Tabla Hash} permite realizar la búsqueda de cualquier elemento en tiempo $O(1)$, y almacena como valor la dirección en memoria; en la Lista Doblemente Enlazada, del elemento que está como clave. Esta última estructura, mantiene todos los elementos ordenados estrictamente por su antigüedad de uso. De esta forma, el \textit{LRU Cache} puede acceder al primer y último elemento, o mover cualquier elemento intermedio hacia el frente, en tiempo constante $O(1)$. \\
+
+Asimismo, el \textit{LRU Cache} es un tipo de dato abstracto que define una estructura de almacenamiento con una capacidad máxima fija. Su comportamiento es el siguiente: cuando la caché alcanza su límite de capacidad y se quiere insertar un nuevo elemento, el \textit{TDA} identifica y elimina el elemento menos usado recientemente. Consta de tres métodos clave: \texttt{init(capacidad)} para establecer su capacidad, \texttt{get(clave)} para recuperar un valor y marcarlo como el más reciente, y \texttt{put(clave, valor)} para insertar o actualizar elementos. 
+
+\section{Herramientas usadas y pasos para reproducir el video}
+
+\subsection{Herramientas}
+
+\begin{itemize}
+    \item \textit{C++17}, implementación real de la \textit{LRU Cache} (\textit{hash map} + lista doblemente enlazada) y generación de los eventos de traza.
+    \item \textit{ManimCE}, animación en \textit{Python}, impulsada por los traces reales generados por c++.
+    \item CMake, build del proyecto \textit{C++} (\textit{targets} \textit{main\_A} y \textit{test\_lru}).
+    \item \textit{ffmpeg}, usado internamente por \textit{Manim} para el render final a \texttt{.mp4}.
+    \item Instalar \textit{Manim}: \texttt{pip install manim} (requiere pycairo/pangocairo del sistema: \texttt{apt install libcairo2-dev libpango1.0-dev pkg-config}).
+    \item Renderizar cada escena: \texttt{manim -pql scenes.py NombreDeLaEscena} para pruebas rápidas, \texttt{-pqh} para la calidad final. 
+
+\end{itemize}
+
+\subsection{Pasos a seguir}
+
+\begin{enumerate}
+    \item Clonar el repositorio \url{https://github.com/Kroj-07/LRU-AED-26_2.git}.
+    \item Compilar y correr las pruebas para generar los \textit{traces} reales: \texttt{g++ -std=c++17 -O2 test\_lru.cpp -o test\_lru \&\& ./test\_lru}
+\end{enumerate}
+
+\section{Análisis de complejidad}
+
+    \begin{table}[H]        
+        \begin{tabular}{|c|c|p{5.5cm}|} 
+            \hline \textbf{Operación} & \textbf{Complejidad} & \textbf{Explicación breve}\\
+            \hline \texttt{get(key)} & $O(1)$ & \texttt{moveToFront} reasigna punteros y encontrar el nodo tiene una complejidad de $O(1)$. \\
+            \hline \texttt{put(key, value)} (si existe) & $O(1)$ & La búsqueda como la actualización del valor y el \texttt{moveToFront()} toman $O(1)$. \\
+            \hline \texttt{put(key, value)} (nuevo) & $O(1)$ & La inserción como el \texttt{insertFront()} toman $O(1)$ aunque hubiese \textit{eviction}. \\
+            \hline \texttt{evict()} & $O(1)$ & El puntero anterior a la cola da el LRU directamente, \texttt{removeNode()} reasigna punteros y \texttt{map.erase} toma $O(1)$. \\ \hline
+        \end{tabular}    
+    \end{table}
+
+\section{Repositorio de \textit{GitHub}}
+
+\url{https://github.com/Kroj-07/LRU-AED-26_2.git}
+
+\section{Conclusiones}
+
+\begin{itemize}
+    \item La eficiencia $O(1)$ de la \textit{LRU Cache} no surge de  una sola estructura, sino de la complementariedad entre una tabla has (acceso directo por clave) y una  lista doblemente enlazada (orden de uso mantenido explícitamente); ninguna de las dos por separado resuelve el problema en tiempo constante.
+
+    \item Separar la lógica real (\textit{C++}) de la capa de animación (\textit{Manim}, vía un tarce de eventos en \textit{JSON} Lines)permitió cumplir el requisito de “animación real, no simulada” sin acoplar el motor gráfico a lenguajes de la estructura , y facilitó verificar cada caso desborde (caché vacía, capacidad 1, eviction) de forma independiente antes de animar
+\end{itemize}
+
+\end{document}
