@@ -76,4 +76,4 @@ El video resultante se guardará en el directorio `media/videos/animacion/1080p6
 ## Video y repositorio
 
 - Video: [enlace al video](https://youtu.be/ooo4fNwBWyA)
-- Repositorio: [[enlace a este repositorio](https://github.com/Kroj-07/LRU-AED-26_2.git)]
+- Repositorio: [enlace a este repositorio](https://github.com/Kroj-07/LRU-AED-26_2.git)
