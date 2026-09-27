@@ -66,7 +66,7 @@
 
 \section{Descripción de la estructura y \textit{TDA}}
 
-El \textit{LRU Cache} utiliza una estructura híbrida que combina una \textit{Tabla Hash} y una Lista Doblemente Enlazada. Por un lado, la \textit{Tabla Hash} permite realizar la búsqueda de cualquier elemento en tiempo $O(1)$, y almacena como valor la dirección en memoria; en la Lista Doblemente Enlazada, del elemento que está como clave. Esta última estructura, mantiene todos los elementos ordenados estrictamente por su antigüedad de uso. De esta forma, el \textit{LRU Cache} puede acceder al primer y último elemento, o mover cualquier elemento intermedio hacia el frente, en tiempo constante $O(1)$. \\
+El \textit{LRU Cache} utiliza una estructura híbrida que combina una \textit{Tabla Hash} y una Lista Doblemente Enlazada. Una \textit{Tabla Hash} permite realizar la búsqueda de cualquier elemento en tiempo $O(1)$, y almacena como valor la dirección en memoria; en la Lista Doblemente Enlazada, del elemento que está como clave. Por su parte, una lista enlazada mantiene todos los elementos ordenados estrictamente por su antigüedad de uso. De esta forma, el \textit{LRU Cache} puede acceder al primer y último elemento, o mover cualquier elemento intermedio hacia el frente, en tiempo constante $O(1)$. \\
 
 Asimismo, el \textit{LRU Cache} es un tipo de dato abstracto que define una estructura de almacenamiento con una capacidad máxima fija. Su comportamiento es el siguiente: cuando la caché alcanza su límite de capacidad y se quiere insertar un nuevo elemento, el \textit{TDA} identifica y elimina el elemento menos usado recientemente. Consta de tres métodos clave: \texttt{init(capacidad)} para establecer su capacidad, \texttt{get(clave)} para recuperar un valor y marcarlo como el más reciente, y \texttt{put(clave, valor)} para insertar o actualizar elementos. 
 
@@ -132,9 +132,9 @@ Asimismo, el \textit{LRU Cache} es un tipo de dato abstracto que define una estr
 \section{Conclusiones}
 
 \begin{itemize}
-    \item La eficiencia $O(1)$ de la \textit{LRU Cache} no surge de  una sola estructura, sino de la complementariedad entre una tabla has (acceso directo por clave) y una  lista doblemente enlazada (orden de uso mantenido explícitamente); ninguna de las dos por separado resuelve el problema en tiempo constante.
+    \item La eficiencia $O(1)$ de la \textit{LRU Cache} no surge del complemento entre una \textit{tabla hash} (acceso directo por clave) y una  lista doblemente enlazada (orden de uso mantenido explícitamente); ninguna de las dos por separado resuelve el problema en tiempo constante.
 
-    \item Separar la lógica real (\textit{C++}) de la capa de animación (\textit{Manim}, vía un tarce de eventos en \textit{JSON} Lines)permitió cumplir el requisito de “animación real, no simulada” sin acoplar el motor gráfico a lenguajes de la estructura , y facilitó verificar cada caso desborde (caché vacía, capacidad 1, eviction) de forma independiente antes de animar
+    \item Separar la lógica real (\textit{C++}) de la capa de animación (\textit{Manim}, vía un tarce de eventos en \textit{JSON} \textit{Lines}) permitió cumplir el requisito de “animación real, no simulada” sin acoplar el motor gráfico a lenguajes de la estructura , y facilitó verificar cada caso desborde (caché vacía, capacidad 1, eviction) de forma independiente antes de animar.
 \end{itemize}
 
 \end{document}
