@@ -35,7 +35,7 @@ El presente repositorio almacena el código para producir el video del funcionam
 ## Procedimiento de compilación y ejecución de pruebas
 
 1. Abrir la carpeta del proyecto en _CLion_.
-2. Elegir el _target_ **`test_lru`**.
+2. Elegir el _target_ `test_lru`.
 3. Correr aquel _target_ para generar los _trace.jsonl_
 
 > El proyecto también incluye el _target_ `main_A`, que corresponde a las
@@ -44,9 +44,36 @@ El presente repositorio almacena el código para producir el video del funcionam
 
 ## Procedimiento para generar animación
 
-...
+La animación se construye con _Manim_ a partir de los archivos `trace_*.jsonl` que genera `test_lru`. Por lo tanto, primero se debe compilar y correr `test_lru`, y luego renderizar la animación como se indicó previamente. Al renderizarlo se producirán un total de 4 archivos en el directorio:
+
+| Archivo | Tipo de caso |
+|:-------:|:------------:|
+| `trace_normal.jsonl` | Uso normal (sin eviction) |
+| `trace_vacia.jsonl` | Caso borde: caché vacía |
+| `trace_eviction.jsonl` | Caso borde: desalojo por capacidad máxima |
+| `trace_capacidad_uno.jsonl` | Caso extremo: capacidad 1 |
+
+Cada archivo contiene una línea _JSON_ por cada operación `get`/`put` ejecutada, con los campos:
+   `step`, `op`, `key`, `value`, `hit`, `evicted`, `evicted_key` y `list_order`.
+
+> Los `.jsonl` deben estar en el mismo directorio desde donde se llama a _Manim_, porque `animacion.py` los abre con rutas relativas (`open(archivo, "r")`).
+> Además, se requiere _FFmpeg_ disponible en el directorio.
+
+Para renderizar la animación, desde el directiorio que contiene `animacion.py` correr:
+
+```bash
+manim -pqh animacion.py LRUAnimacion
+```
+
+>El video no se rendizará si _Manim_ no está instalado, para verificar ello correr:
+>
+>```bash
+>manim --version
+>```
+
+El video resultante se guardará en el directorio `media/videos/animacion/1080p60/LRUAnimacion.mp4`.
 
 ## Video y repositorio
 
-- Video: [enlace al video / YouTube no listado]
+- Video: [enlace al video](https://youtu.be/ooo4fNwBWyA)
 - Repositorio: [[enlace a este repositorio](https://github.com/Kroj-07/LRU-AED-26_2.git)]
